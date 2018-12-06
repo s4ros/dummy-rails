@@ -9,15 +9,18 @@ services:
       - db
     environment:
       DUMMY_DATABASE_PASSWORD: dummy_secret_passwd
-      DATABASE_URL: "postgres://dummy:dummy-ruby123@db/dev"
+      DATABASE_URL: "postgres://dummy:dummy-ruby123@db/development"
       REDIS_URL: "redis:6379"
+    # volumes:
+    #   - ./:/data
+    # command: sleep 3600
 
   db:
     image: postgres:9.6
     environment:
       POSTGRES_USER: dummy
       POSTGRES_PASSWORD: dummy-ruby123
-      POSTGRES_DB: dev
+      POSTGRES_DB: development
 
   redis:
     image: redis:alpine
