@@ -12,9 +12,6 @@ services:
       DATABASE_URL: "postgres://dummy:dummy-ruby123@db/development"
       REDIS_URL: "redis:6379"
     command: ash -c "sleep 10 && rails db:migrate && bin/rails server"
-    # volumes:
-    #   - ./:/data
-    # command: sleep 3600
 
   sidekiq:
     image: dummy-rails
