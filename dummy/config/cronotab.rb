@@ -13,3 +13,12 @@
 #
 # Crono.perform(TestJob).every 2.days, at: '15:30'
 #
+
+
+class TestJob
+  def perform
+    puts 'Test!'
+  end
+end
+
+Crono.perform(TestJob).every 5.seconds

@@ -11,9 +11,25 @@ services:
       DUMMY_DATABASE_PASSWORD: dummy_secret_passwd
       DATABASE_URL: "postgres://dummy:dummy-ruby123@db/development"
       REDIS_URL: "redis:6379"
+    command: ash -c "sleep 10 && rails db:migrate && bin/rails server"
     # volumes:
     #   - ./:/data
     # command: sleep 3600
+
+  sidekiq:
+    image: dummy-rails
+    command: bundle exec sidekiq
+    depends_on:
+      - web
+
+  crono:
+    image: dummy-rails
+    command: ash -c "sleep 15 && bundle exec crono"
+    environment:
+      DUMMY_DATABASE_PASSWORD: dummy_secret_passwd
+      DATABASE_URL: "postgres://dummy:dummy-ruby123@db/development"
+    depends_on:
+      - web
 
   db:
     image: postgres:9.6
