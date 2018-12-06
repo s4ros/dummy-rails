@@ -8,7 +8,7 @@ apk add gcc \
   nodejs \
   tzdata \
   postgresql-dev postgresql-libs
-RUN gem install rails execjs tzinfo-data sidekiq pg
+RUN gem install rails execjs tzinfo-data pg
 
 COPY dummy /data
 WORKDIR /data
