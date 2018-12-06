@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+  web:
+    image: dummy-rails
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      DUMMY_DATABASE_PASSWORD: dummy_secret_passwd
+      DATABASE_URL: "postgres://dummy:dummy-ruby123@db/dev"
+
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: dummy
+      POSTGRES_PASSWORD: dummy-ruby123
+      POSTGRES_DB: dev
